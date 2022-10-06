@@ -21,7 +21,7 @@ function banana_split() {
     while read p; do
         IFS=':' read -ra ADDR <<< "$p"
         if [ "$CURRENT_FILE" != "${ADDR[0]}" ]; then
-            echo ‣ In file "${ADDR[0]}"
+            echo "‣ In file ${ADDR[0]}"
             CURRENT_FILE="${ADDR[0]}"
         fi
         if [ "${ADDR[2]}" = " MAJOR" ]; then
@@ -31,10 +31,10 @@ function banana_split() {
         elif [ "${ADDR[2]}" = " INFO" ]; then
             echo -ne "${Cyan}[INFO]"
         fi
-        error=${ADDR[3]: 2}
+        error="${ADDR[3]: 2}"
         echo -ne " ($error)${Color_Off} - ${errors[${error}]^}."
         echo -e " ${IBlack}(${ADDR[0]: 2}:${ADDR[1]})${Color_Off}"
-    done < $1
+    done < "$1"
     echo -e "${Yellow}BANANA SPLIT${Color_Off}"
 }
 
@@ -124,7 +124,7 @@ then
     $BASE_EXEC_CMD run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
     # [[ -f "$EXPORT_FILE" ]] && echo "$(wc -l < "$EXPORT_FILE") coding style error(s) reported in "$EXPORT_FILE", $(grep -c ": MAJOR:" "$EXPORT_FILE") major, $(grep -c ": MINOR:" "$EXPORT_FILE") minor, $(grep -c ": INFO:" "$EXPORT_FILE") info"
 
-    banana_split $EXPORT_FILE
+    banana_split "$EXPORT_FILE"
 else
     cat_readme
 fi
