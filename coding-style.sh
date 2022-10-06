@@ -125,6 +125,8 @@ then
     # [[ -f "$EXPORT_FILE" ]] && echo "$(wc -l < "$EXPORT_FILE") coding style error(s) reported in "$EXPORT_FILE", $(grep -c ": MAJOR:" "$EXPORT_FILE") major, $(grep -c ": MINOR:" "$EXPORT_FILE") minor, $(grep -c ": INFO:" "$EXPORT_FILE") info"
 
     banana_split "$EXPORT_FILE"
+    ### delete useless report file
+    rm -f "$EXPORT_FILE"
 else
     cat_readme
 fi
