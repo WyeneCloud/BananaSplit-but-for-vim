@@ -1,17 +1,16 @@
 #!/bin/bash
 
 function my_readlink() {
-    cd $1
+    # cd $1
     pwd
-    cd - > /dev/null
+    # cd - > /dev/null
 }
 
 function cat_readme() {
     echo ""
-    echo "Usage: ./coding-style.sh DELIVERY_DIR REPORTS_DIR"
-    echo "       DELIVERY_DIR      Should be the directory where your project files are"
-    echo "       REPORTS_DIR       Should be the directory where we output the reports"
-    echo "                         Take note that existing reports will be overriden"
+    echo "Usage: ./coding-style.sh"
+    echo "Use it in the folder you want to verify !"
+    echo "Take note that file coding-style-reports.log will be deleted."
     echo ""
 }
 
@@ -79,12 +78,11 @@ errors=(
 ["V1"]="identifier name not following the snake_case convention"
 )
 
-if [ $# == 1 ] && [ $1 == "--help" ]; then
+if [ $# != 0 ]; then
     cat_readme
-elif [ $# = 2 ];
-then
-    DELIVERY_DIR=$(my_readlink "$1")
-    REPORTS_DIR=$(my_readlink "$2")
+else
+    DELIVERY_DIR=$(my_readlink)
+    REPORTS_DIR=$(my_readlink)
     EXPORT_FILE="$REPORTS_DIR"/coding-style-reports.log
     ### delete existing report file
     rm -f "$EXPORT_FILE"
@@ -99,6 +97,4 @@ then
     banana_split "$EXPORT_FILE"
     ### delete useless report file
     rm -f "$EXPORT_FILE"
-else
-    cat_readme
 fi
