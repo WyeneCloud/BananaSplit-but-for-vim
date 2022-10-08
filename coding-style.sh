@@ -1,9 +1,9 @@
 #!/bin/bash
 
 function my_readlink() {
-    cd $1
+    # cd $1
     pwd
-    cd - > /dev/null
+    # cd - > /dev/null
 }
 
 function cat_readme() {
@@ -79,7 +79,7 @@ errors=(
 ["V1"]="identifier name not following the snake_case convention"
 )
 
-if [ $# == 1 ] && [ $1 == "--help" ]; then
+if [ $# != 0 ]; then
     cat_readme
 elif [ $# = 2 ];
 then
@@ -127,6 +127,4 @@ then
     banana_split "$EXPORT_FILE"
     ### delete useless report file
     rm -f "$EXPORT_FILE"
-else
-    cat_readme
 fi
