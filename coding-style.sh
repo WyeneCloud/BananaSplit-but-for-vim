@@ -79,7 +79,7 @@ errors=(
 ["V1"]="identifier name not following the snake_case convention"
 )
 
-if [ $# != 0 ]; then
+if [ $# == 1 ] && ( [ $1 == "--help" ] || [ $1 == "-h" ]); then
     cat_readme
 elif [ $# = 2 ];
 then
@@ -111,7 +111,7 @@ then
     fi
 
 
-    if [ $GHCR_REPOSITORY_STATUS -eq 0 ]; then
+    if [ $GHCR_REPOSITORY_STATUS -eq 0 ] && [ $# == 1 ] && ( [ $1 == "-u" ] || [ $1 == "--update" ] ); then
         echo "Downloading new image and cleaning old one..."
         $BASE_EXEC_CMD pull ghcr.io/epitech/coding-style-checker:latest && $BASE_EXEC_CMD image prune -f
         echo "Download OK"
