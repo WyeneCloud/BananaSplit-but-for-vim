@@ -9,6 +9,9 @@ Requirement :
 
 Use `coding-style.sh`
 
+By default the script doesn't update the docker. Be sure to check for update
+every time before the end of a project with the argument `-u`.
+
 This script is delivered "as is" without any warranty.
 
 A part of the source code comes from [Epitech](https://github.com/Epitech).

@@ -10,7 +10,10 @@ function cat_readme() {
     echo ""
     echo "Usage: ./coding-style.sh"
     echo "Use it in the folder you want to verify !"
-    echo "Take note that file coding-style-reports.log will be deleted."
+    echo "-u --update Update the container before run."
+    echo "-h --help Display this menu."
+    echo ""
+    echo "Take note that file coding-style-reports.log will be deleted !"
     echo ""
 }
 
@@ -78,7 +81,7 @@ errors=(
 ["V1"]="identifier name not following the snake_case convention"
 )
 
-if [ $# != 0 ]; then
+if [ $# == 1 ] && ( [ $1 == "--help" ] || [ $1 == "-h" ]); then
     cat_readme
 else
     DELIVERY_DIR=$(my_readlink)
@@ -88,10 +91,12 @@ else
     rm -f "$EXPORT_FILE"
 
     ### Pull new version of docker image and clean olds
-    sudo docker pull ghcr.io/epitech/coding-style-checker:latest && sudo docker image prune -f
+    if [ $# == 1 ] && ( [ $1 == "-u" ] || [ $1 == "--update" ] ); then
+        docker pull ghcr.io/epitech/coding-style-checker:latest && sudo docker image prune -f
+    fi
 
     ### generate reports
-    sudo docker run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
+    docker run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
     # [[ -f "$EXPORT_FILE" ]] && echo "$(wc -l < "$EXPORT_FILE") coding style error(s) reported in "$EXPORT_FILE", $(grep -c ": MAJOR:" "$EXPORT_FILE") major, $(grep -c ": MINOR:" "$EXPORT_FILE") minor, $(grep -c ": INFO:" "$EXPORT_FILE") info"
 
     banana_split "$EXPORT_FILE"
