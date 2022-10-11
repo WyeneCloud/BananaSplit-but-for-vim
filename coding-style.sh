@@ -92,11 +92,16 @@ else
 
     ### Pull new version of docker image and clean olds
     if [ $# == 1 ] && ( [ $1 == "-u" ] || [ $1 == "--update" ] ); then
-        docker pull ghcr.io/epitech/coding-style-checker:latest && sudo docker image prune -f
+        sudo docker pull ghcr.io/epitech/coding-style-checker:latest && sudo docker image prune -f
     fi
 
     ### generate reports
-    docker run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
+    if id -nG "$USER" | grep -qw "docker"; then
+        docker run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
+    else
+        sudo docker run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
+    fi
+        
     # [[ -f "$EXPORT_FILE" ]] && echo "$(wc -l < "$EXPORT_FILE") coding style error(s) reported in "$EXPORT_FILE", $(grep -c ": MAJOR:" "$EXPORT_FILE") major, $(grep -c ": MINOR:" "$EXPORT_FILE") minor, $(grep -c ": INFO:" "$EXPORT_FILE") info"
 
     banana_split "$EXPORT_FILE"
