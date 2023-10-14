@@ -1,9 +1,9 @@
 #!/bin/bash
 
 function my_readlink() {
-    # cd $1
+    cd $1
     pwd
-    # cd - > /dev/null
+    cd - > /dev/null
 }
 
 function cat_readme() {
@@ -118,7 +118,6 @@ then
     else
         echo "WARNING: Skipping image download"
     fi
-   
 
     ### generate reports
     $BASE_EXEC_CMD run --rm -i -v "$DELIVERY_DIR":"/mnt/delivery" -v "$REPORTS_DIR":"/mnt/reports" ghcr.io/epitech/coding-style-checker:latest "/mnt/delivery" "/mnt/reports"
@@ -127,4 +126,6 @@ then
     banana_split "$EXPORT_FILE"
     ### delete useless report file
     rm -f "$EXPORT_FILE"
+else
+    cat_readme
 fi
