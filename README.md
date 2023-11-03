@@ -20,6 +20,10 @@ In memoriam of [Abricot-Norminette](https://github.com/Just1truc/Abricot-Normine
 
 If using Nix, you can run `nix run github:epitech/coding-style-checker` to run a script printing you the list of infractions.
 
+A part of the source code comes from [Epitech](https://github.com/Epitech).
+
+In memoriam of [Abricot-Norminette](https://github.com/Just1truc/Abricot-Norminette).
+
 ### Windows
 
 Requirements :
