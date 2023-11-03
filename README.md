@@ -2,14 +2,17 @@
 
 The script display a colored output on the terminal (inspired by [Abricot-Norminette](https://github.com/Just1truc/Abricot-Norminette)).
 
+### Install
+```
+git clone git@github.com:Ardorax/BananaSplit.git
+mv BananaSplit/coding-style.sh ~/.local/bin/banana
+```
 ### Linux
 
 Requirement :
 
 - [Docker](https://docs.docker.com/engine/install/) installed
 - [Curl](https://curl.se/download.html) installed
-
-Use `coding-style.sh`
 
 A part of the source code comes from [Epitech](https://github.com/Epitech).
 
