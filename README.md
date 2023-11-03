@@ -10,6 +10,7 @@ mv BananaSplit/coding-style.sh ~/.local/bin/banana
 # OR
 sudo mv BananaSplit/coding-style.sh /usr/bin/banana
 ```
+You can now use `banana . .` everywhere !
 ### Linux
 
 Requirement :
