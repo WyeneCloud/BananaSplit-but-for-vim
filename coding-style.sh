@@ -52,34 +52,42 @@ declare -A errors
 errors=(
 ["A3"]="file not ending with a line break (\\\\n)"
 ["C1"]="conditional block with more than 3 branches, or at a nesting level of 3 or more"
-["C3"]="use of 'goto' keyword"
+["C2"]="abusive ternary operator usage"
+["C3"]="use of "goto" keyword"
 ["F2"]="function name not following the snake_case convention"
 ["F3"]="line of more than 80 columns"
 ["F4"]="line part of a function with more than 20 lines"
 ["F5"]="function with more than 4 parameters"
 ["F6"]="function with empty parameter list"
+["F7"]="structure parameter received by copy"
 ["F8"]="comment inside function"
 ["F9"]="nested function defined"
 ["G1"]="file not starting with correctly formatted Epitech standard header"
 ["G2"]="zero, two, or more empty lines separating implementations of functions"
 ["G3"]="bad indentation of preprocessor directive"
 ["G4"]="global variable used"
-["G5"]="'include' directive used to include file other than a header"
+["G5"]=""include" directive used to include file other than a header"
 ["G6"]="carriage return character (\\r) used"
 ["G7"]="trailing space"
 ["G8"]="leading or trailing empty line"
+["G10"]="use of inline assembly"
 ["H1"]="bad separation between source file and header file"
 ["H2"]="header file not protected against double inclusion"
+["H3"]="abusive macro usage"
+["L1"]="multiple statements on the same line"
 ["L2"]="bad indentation at the start of a line"
 ["L3"]="misplaced or missing space(s)"
 ["L4"]="misplaced curly bracket"
+["L5"]="variable not declared at the beginning of the function or several declarations with the same statement"
+["L6"]="missing blank line after variable declarations or unnecessary blank line"
 ["O1"]="compiled, temporary or unnecessary file"
-["O3"]="more than 5 functions in a single file"
+["O3"]="more than 10 functions or more than 5 non-static functions in the file"
 ["O4"]="file name not following the snake_case convention"
 ["V1"]="identifier name not following the snake_case convention"
+["V3"]="misplaced pointer symbol"
 )
 
-if [ $# == 1 ] && ( [ $1 == "--help" ] || [ $1 == "-h" ]); then
+if [ $# == 1 ] && [ $1 == "--help" ]; then
     cat_readme
 elif [ $# = 2 ];
 then
@@ -111,7 +119,7 @@ then
     fi
 
 
-    if [ $GHCR_REPOSITORY_STATUS -eq 0 ] && [ $# == 1 ] && ( [ $1 == "-u" ] || [ $1 == "--update" ] ); then
+    if [ $GHCR_REPOSITORY_STATUS -eq 0 ]; then
         echo "Downloading new image and cleaning old one..."
         $BASE_EXEC_CMD pull ghcr.io/epitech/coding-style-checker:latest && $BASE_EXEC_CMD image prune -f
         echo "Download OK"
