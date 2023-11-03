@@ -14,10 +14,6 @@ Requirement :
 - [Docker](https://docs.docker.com/engine/install/) installed
 - [Curl](https://curl.se/download.html) installed
 
-A part of the source code comes from [Epitech](https://github.com/Epitech).
-
-In memoriam of [Abricot-Norminette](https://github.com/Just1truc/Abricot-Norminette).
-
 If using Nix, you can run `nix run github:epitech/coding-style-checker` to run a script printing you the list of infractions.
 
 A part of the source code comes from [Epitech](https://github.com/Epitech).
