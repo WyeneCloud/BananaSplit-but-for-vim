@@ -3,7 +3,7 @@
 The script display a colored output on the terminal (inspired by [Ardorax/BananaSplit](https://github.com/Ardorax/BananaSplit)).
 
 add this to your vim config file
-### vim config support
+### vim config 
 ```
 set makeprg=coconut\ .\ .
 " :make
