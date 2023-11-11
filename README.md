@@ -21,6 +21,7 @@ set makeprg=coconut\ .\ .
 ### Install
 ```
 wget https://raw.githubusercontent.com/WyeneCloud/BananaSplit-but-for-vim/main/coding-style.sh
+chmod +x coding-style.sh
 mv coding-style.sh ~/.local/bin/coconut
 # OR
 sudo mv coding-style.sh /usr/bin/coconut
