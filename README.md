@@ -4,13 +4,13 @@ The script display a colored output on the terminal (inspired by [Abricot-Normin
 
 ### Install
 ```
-git clone git@github.com:Ardorax/BananaSplit.git
-
-mv BananaSplit/coding-style.sh ~/.local/bin/banana
+wget https://raw.githubusercontent.com/WyeneCloud/BananaSplit-but-for-vim/main/coding-style.sh
+mv coding-style.sh ~/.local/bin/coconut
 # OR
-sudo mv BananaSplit/coding-style.sh /usr/bin/banana
+sudo mv coding-style.sh /usr/bin/coconut
 ```
-You can now use `banana . .` everywhere !
+You can now use `coconut . .` everywhere !
+
 ### Linux
 
 Requirement :
