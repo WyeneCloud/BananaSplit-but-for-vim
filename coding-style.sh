@@ -17,25 +17,22 @@ function cat_readme() {
 
 function banana_split() {
     CURRENT_FILE=".c"
-    echo -e "${Yellow}BANANA NA NA NA NA${Color_Off}"
     while read p; do
         IFS=':' read -ra ADDR <<< "$p"
         if [ "$CURRENT_FILE" != "${ADDR[0]}" ]; then
-            echo "‣ In file ${ADDR[0]}"
             CURRENT_FILE="${ADDR[0]}"
         fi
+        echo -ne "${ADDR[0]: 2}:${ADDR[1]}: "
         if [ "${ADDR[2]}" = " MAJOR" ]; then
-            echo -ne "${Red}[Major]"
+            echo -ne "[Major]"
         elif [ "${ADDR[2]}" = " MINOR" ]; then
-            echo -ne "${Yellow}[MINOR]"
+            echo -ne "[MINOR]"
         elif [ "${ADDR[2]}" = " INFO" ]; then
-            echo -ne "${Cyan}[INFO]"
+            echo -ne "[INFO]"
         fi
         error="${ADDR[3]: 2}"
-        echo -ne " ($error)${Color_Off} - ${errors[${error}]^}."
-        echo -e " ${IBlack}(${ADDR[0]: 2}:${ADDR[1]})${Color_Off}"
+        echo -e " ($error) - ${errors[${error}]^}.${Color_Off}"
     done < "$1"
-    echo -e "${Yellow}BANANA SPLIT${Color_Off}"
 }
 
 # Reset
@@ -95,7 +92,7 @@ then
     REPORTS_DIR=$(my_readlink "$2")
     DOCKER_SOCKET_PATH=/var/run/docker.sock
     HAS_SOCKET_ACCESS=$(test -r $DOCKER_SOCKET_PATH; echo "$?")
-    GHCR_REGISTRY_TOKEN=$(curl -s "https://ghcr.io/token?service=ghcr.io&scope=repository:epitech/coding-style-checker:pull" | grep -o '"token":"[^"]*' | grep -o '[^"]*$') 
+    GHCR_REGISTRY_TOKEN=$(curl -s "https://ghcr.io/token?service=ghcr.io&scope=repository:epitech/coding-style-checker:pull" | grep -o '"token":"[^"]*' | grep -o '[^"]*$')
     GHCR_REPOSITORY_STATUS=$(curl -I -f -s -o /dev/null -H "Authorization: Bearer $GHCR_REGISTRY_TOKEN" "https://ghcr.io/v2/epitech/coding-style-checker/manifests/latest" && echo 0 || echo 1)
     BASE_EXEC_CMD="docker"
     EXPORT_FILE="$REPORTS_DIR"/coding-style-reports.log
@@ -108,7 +105,7 @@ then
         echo "WARNING: Socket access is denied"
         echo "To fix this we will add the current user to docker group with : sudo usermod -a -G docker $USER"
         read -p "Do you want to proceed? (yes/no) " yn
-        case $yn in 
+        case $yn in
             yes | Y | y | Yes | YES) echo "ok, we will proceed";
                 sudo usermod -a -G docker $USER;
                 echo "You must reboot your computer for the changes to take effect";;
