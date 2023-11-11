@@ -31,7 +31,7 @@ function banana_split() {
             echo -ne "[INFO]"
         fi
         error="${ADDR[3]: 2}"
-        echo -e " ($error) - ${errors[${error}]^}.${Color_Off}"
+        echo -e " ($error) - ${errors[${error}]^}."
     done < "$1"
 }
 
