@@ -1,6 +1,6 @@
 ## Scripts to generate coding style reports
 
-The script display a colored output on the terminal (inspired by [Abricot-Norminette](https://github.com/Just1truc/Abricot-Norminette)).
+The script display a colored output on the terminal (inspired by [Ardorax/BananaSplit](https://github.com/Ardorax/BananaSplit)).
 
 add this to your vim config file
 ### vim config support
